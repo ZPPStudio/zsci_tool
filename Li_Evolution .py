@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov 17 15:57:52 2021
-
-@author: HCI
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Wed Mar 31 17:50:08 2021
 
 @author: Administrator
@@ -14,8 +7,8 @@ Created on Wed Mar 31 17:50:08 2021
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation,FFMpegWriter  # 动图的核心函数
-import seaborn as sns  # 美化图形的一个绘图包
+from matplotlib.animation import FuncAnimation,FFMpegWriter 
+import seaborn as sns  
 
 def create_geometric_series(start,number,factor):
     number_list = np.arange(number)
@@ -47,9 +40,9 @@ ry = boffset + r * np.sin(theta)
 oemga = 1/np.sqrt(lambda671 * tlist[0])
 y = 1/2 * oemga**2*xlist**2 /1e9
 
-sns.set_style("whitegrid")  # 设置图形主图
+sns.set_style("whitegrid") 
 
-# 创建画布
+
 fig, ax = plt.subplots()
 fig.set_tight_layout(True)
 
@@ -78,12 +71,9 @@ def update(i):
     ry_step = ry[0::round(len(ry)/20)]
     ax.plot(rx_step, ry_step,'r',linestyle = 'dashed')
     ax.fill_between(rx,ry,facecolor = 'red',alpha = 0.5)
-    # 更新直线和x轴（用一个新的x轴的标签）。
-    # 用元组（Tuple）的形式返回在这一帧要被重新绘图的物体
+
     return ax
 
-# FuncAnimation 会在每一帧都调用“update” 函数。
-# 在这里设置一个10帧的动画，每帧之间间隔200毫秒
 anim = FuncAnimation(fig, update,frames , interval=100)
 writer = FFMpegWriter()
 anim.save('Liatom2.gif', writer='imagemagick', fps=30)
